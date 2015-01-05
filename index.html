@@ -12,11 +12,11 @@
 		Hello {{world}}
 
 		<div>
-			Contains: <input ng-model="selected">
+			Contains: <input ng-model="query">
 		</div>
 
 		<ul class="phones">
-			<li ng-repeat="item in collection | filter: selected">
+			<li ng-repeat="item in collection | filter: query">
 				{{item}}
 			</li>
 		</ul>
