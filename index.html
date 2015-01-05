@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="App">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Budget App</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="build/main.css">
+		<script src="build/app.js"></script>
+	</head>
+	<body ng-controller="BudgetItemCtrl">
+		Hello {{world}}
+
+		<div>
+			Contains: <input ng-model="selected">
+		</div>
+
+		<ul class="phones">
+			<li ng-repeat="item in collection | filter: selected">
+				{{item}}
+			</li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,1 @@
+Learning Angular with a simple budget app
