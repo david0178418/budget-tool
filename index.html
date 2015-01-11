@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="App">
+<html ng-app="budgetApp">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Budget App</title>
@@ -8,17 +8,7 @@
 		<link rel="stylesheet" href="build/main.css">
 		<script src="build/app.js"></script>
 	</head>
-	<body ng-controller="BudgetItemCtrl">
-		Hello {{world}}
-
-		<div>
-			Contains: <input ng-model="query">
-		</div>
-
-		<ul class="phones">
-			<li ng-repeat="item in collection | filter: query">
-				{{item}}
-			</li>
-		</ul>
+	<body>
+		<budget-entry-list></budget-entry-list>
 	</body>
 </html>

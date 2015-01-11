@@ -18,11 +18,19 @@ gulp.task('sass', function () {
 });
 
 gulp.task('js', function () {
-	gulp.src(['bower_components/angular/angular.js', 'src/js/app.js', 'src/js/**/*.js'])
+	gulp
+		.src([
+			'bower_components/localforage/dist/localforage.js',
+			'bower_components/lodash/dist/lodash.js',
+			'bower_components/angular/angular.js',
+			'src/js/third-party/third-party.js',
+			'src/js/app.js',
+			'src/js/**/*.js',
+		])
 		.pipe(sourcemaps.init())
 		.pipe(concat('app.js'))
 		.pipe(ngAnnotate())
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(sourcemaps.write('../maps'))
 		.pipe(gulp.dest('./build'));
 })
