@@ -35412,28 +35412,6 @@ var minlengthDirective = function() {
 (function() {
 	"use strict";
 	angular
-		.module('third-party')
-		.factory('localforage', localforage);
-
-	function localforage($window) {
-		return $window.localforage;
-	}
-	localforage.$inject = ["$window"];
-})();
-(function() {
-	"use strict";
-	angular
-		.module('third-party')
-		.factory('_', lodash);
-
-	function lodash($window) {
-		return $window._.noConflict();
-	}
-	lodash.$inject = ["$window"];
-})();
-(function() {
-	"use strict";
-	angular
 		.module('budgetApp')
 		.factory('storage', storage);
 
@@ -35456,6 +35434,28 @@ var minlengthDirective = function() {
 		};
 	}
 	storage.$inject = ["localforage"];
+})();
+(function() {
+	"use strict";
+	angular
+		.module('third-party')
+		.factory('localforage', localforage);
+
+	function localforage($window) {
+		return $window.localforage;
+	}
+	localforage.$inject = ["$window"];
+})();
+(function() {
+	"use strict";
+	angular
+		.module('third-party')
+		.factory('_', lodash);
+
+	function lodash($window) {
+		return $window._.noConflict();
+	}
+	lodash.$inject = ["$window"];
 })();
 (function() {
 	"use strict";
@@ -35499,7 +35499,6 @@ var minlengthDirective = function() {
 		// this.budgetEntryModel = budgetEntryModelFactory.create({
 		// 	label: 'test',
 		// });
-		debugger;
 	}
 	BudgetEntryViewModel.$inject = ["$scope"];
 

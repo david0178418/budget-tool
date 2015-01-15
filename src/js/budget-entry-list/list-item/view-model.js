@@ -9,7 +9,6 @@
 		// this.budgetEntryModel = budgetEntryModelFactory.create({
 		// 	label: 'test',
 		// });
-		debugger;
 	}
 
 	BudgetEntryViewModel.prototype = {
