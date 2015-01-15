@@ -2,9 +2,9 @@
 	"use strict";
 	angular
 		.module('budgetApp')
-		.directive('budgetEntryList', budgetEntries);
+		.directive('budgetEntryList', budgetEntryList);
 
-	function budgetEntries() {
+	function budgetEntryList() {
 		return {
 			controller: 'BudgetEntriesViewModel',
 			controllerAs: 'vm',

@@ -35356,35 +35356,36 @@ var minlengthDirective = function() {
 	"use strict";
 	angular
 		.module('budgetApp')
-		.factory('budgetEntryModelList', budgetEntryModelList);
+		.factory('dataservice', dataservice);
 
-	function budgetEntryModelList(_, storage, BudgetEntryModel) {
-		var budgetEntries = [{
+	function dataservice($q) {
+		return {
+			getData: getData,
+		};
+
+		function getData() {
+			var data = [{
 				label: 'test2',
 			}, {
 				label: 'test1',
-		}];
+			}];
 
+			var fetch = $q.defer();
+			fetch.resolve(data);
 
-		// storage.get('BudgetEntries').then(function(entries) {
-		// 	_.each(entries, function(entry) {
-		// 		budgetEntries.push(entry);
-		// 	})
-		// });
-		
-		return _.map(budgetEntries, function(budgetEntry) {
-			return new BudgetEntryModel(budgetEntry);
-		});
+			return fetch.promise;
+		}
 	}
-	budgetEntryModelList.$inject = ["_", "storage", "BudgetEntryModel"];
+	dataservice.$inject = ["$q"];
 })();
+
 (function() {
 	"use strict";
 	angular
 		.module('budgetApp')
-		.directive('budgetEntryList', budgetEntries);
+		.directive('budgetEntryList', budgetEntryList);
 
-	function budgetEntries() {
+	function budgetEntryList() {
 		return {
 			controller: 'BudgetEntriesViewModel',
 			controllerAs: 'vm',
@@ -35402,11 +35403,14 @@ var minlengthDirective = function() {
 		.module('budgetApp')
 		.controller('BudgetEntriesViewModel', BudgetEntriesViewModel);
 
-	function BudgetEntriesViewModel(budgetEntryModelList) {
-		this.test = 'myval';
-		this.budgetEntries = budgetEntryModelList;
+	function BudgetEntriesViewModel(dataservice) {
+		var vm = this;
+		
+		dataservice.getData().then(function(data) {
+			vm.budgetEntries = data;
+		});
 	}
-	BudgetEntriesViewModel.$inject = ["budgetEntryModelList"];
+	BudgetEntriesViewModel.$inject = ["dataservice"];
 })();
 
 (function() {
@@ -35461,19 +35465,6 @@ var minlengthDirective = function() {
 	"use strict";
 	angular
 		.module('budgetApp')
-		.value('BudgetEntryModel', BudgetEntryModel);
-
-	function BudgetEntryModel(props) {
-		this.label = props.label + "1";
-	}
-
-	BudgetEntryModel.prototype = {
-	};
-})();
-(function() {
-	"use strict";
-	angular
-		.module('budgetApp')
 		.directive('budgetEntryListItem', budgetEntryListItem);
 
 	function budgetEntryListItem() {
@@ -35495,6 +35486,7 @@ var minlengthDirective = function() {
 		.controller('BudgetEntryViewModel', BudgetEntryViewModel);
 
 	function BudgetEntryViewModel($scope) {
+		console.log(this, $scope);
 		//this.budgetEntryModel = entry;
 		// this.budgetEntryModel = budgetEntryModelFactory.create({
 		// 	label: 'test',
@@ -35503,13 +35495,6 @@ var minlengthDirective = function() {
 	BudgetEntryViewModel.$inject = ["$scope"];
 
 	BudgetEntryViewModel.prototype = {
-		get label() {
-			return this.budgetEntryModel.label;
-		},
-
-		set label(value) {
-			this.budgetEntryModel.label = value;
-		}
 	};
 })();
 

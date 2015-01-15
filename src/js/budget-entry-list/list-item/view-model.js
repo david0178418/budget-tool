@@ -5,6 +5,7 @@
 		.controller('BudgetEntryViewModel', BudgetEntryViewModel);
 
 	function BudgetEntryViewModel($scope) {
+		console.log(this, $scope);
 		//this.budgetEntryModel = entry;
 		// this.budgetEntryModel = budgetEntryModelFactory.create({
 		// 	label: 'test',
@@ -12,12 +13,5 @@
 	}
 
 	BudgetEntryViewModel.prototype = {
-		get label() {
-			return this.budgetEntryModel.label;
-		},
-
-		set label(value) {
-			this.budgetEntryModel.label = value;
-		}
 	};
 })();
