@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	angular
 		.module('budgetApp')
 		.controller('BudgetEntryViewModel', BudgetEntryViewModel);

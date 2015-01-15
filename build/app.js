@@ -35345,6 +35345,7 @@ var minlengthDirective = function() {
 	"use strict";
 	angular.module('third-party', []);
 })();
+
 (function() {
 	"use strict";
 	angular.module('budgetApp', [
@@ -35378,6 +35379,7 @@ var minlengthDirective = function() {
 	budgetEntryModelList.$inject = ["_", "storage", "BudgetEntryModel"];
 })();
 (function() {
+	"use strict";
 	angular
 		.module('budgetApp')
 		.directive('budgetEntryList', budgetEntries);
@@ -35393,7 +35395,9 @@ var minlengthDirective = function() {
 		};
 	}
 })();
+
 (function() {
+	"use strict";
 	angular
 		.module('budgetApp')
 		.controller('BudgetEntriesViewModel', BudgetEntriesViewModel);
@@ -35403,6 +35407,29 @@ var minlengthDirective = function() {
 		this.budgetEntries = budgetEntryModelList;
 	}
 	BudgetEntriesViewModel.$inject = ["budgetEntryModelList"];
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('third-party')
+		.factory('localforage', localforage);
+
+	function localforage($window) {
+		return $window.localforage;
+	}
+	localforage.$inject = ["$window"];
+})();
+(function() {
+	"use strict";
+	angular
+		.module('third-party')
+		.factory('_', lodash);
+
+	function lodash($window) {
+		return $window._.noConflict();
+	}
+	lodash.$inject = ["$window"];
 })();
 (function() {
 	"use strict";
@@ -35433,28 +35460,6 @@ var minlengthDirective = function() {
 (function() {
 	"use strict";
 	angular
-		.module('third-party')
-		.factory('localforage', localforage);
-
-	function localforage($window) {
-		return $window.localforage;
-	}
-	localforage.$inject = ["$window"];
-})();
-(function() {
-	"use strict";
-	angular
-		.module('third-party')
-		.factory('_', lodash);
-
-	function lodash($window) {
-		return $window._.noConflict();
-	}
-	lodash.$inject = ["$window"];
-})();
-(function() {
-	"use strict";
-	angular
 		.module('budgetApp')
 		.value('BudgetEntryModel', BudgetEntryModel);
 
@@ -35465,7 +35470,8 @@ var minlengthDirective = function() {
 	BudgetEntryModel.prototype = {
 	};
 })();
- (function() {
+(function() {
+	"use strict";
 	angular
 		.module('budgetApp')
 		.directive('budgetEntryListItem', budgetEntryListItem);
@@ -35483,6 +35489,7 @@ var minlengthDirective = function() {
 })();
 
 (function() {
+	"use strict";
 	angular
 		.module('budgetApp')
 		.controller('BudgetEntryViewModel', BudgetEntryViewModel);
@@ -35506,4 +35513,5 @@ var minlengthDirective = function() {
 		}
 	};
 })();
+
 //# sourceMappingURL=../maps/app.js.map

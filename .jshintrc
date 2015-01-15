@@ -18,7 +18,7 @@
 	"expr": false,
 	"forin": true,
 	"immed": true,
-	"latedef": true,
+	"latedef": false,
 	"loopfunc": false,
 	"shadow": false,
 	"supernew": false,

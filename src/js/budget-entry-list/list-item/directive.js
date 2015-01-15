@@ -1,4 +1,5 @@
- (function() {
+(function() {
+	"use strict";
 	angular
 		.module('budgetApp')
 		.directive('budgetEntryListItem', budgetEntryListItem);
