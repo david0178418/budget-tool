@@ -1,11 +1,11 @@
 {
 	"passfail": false,
 	"browser": true,
-	"globals": {  
+	"globals": {
+		"angular": true
 	},
 	"debug": false,
 	"devel": true,
-	"es5": true,
 	"strict": true,
 	"globalstrict": false,
 	"asi": false,
