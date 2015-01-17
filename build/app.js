@@ -35437,6 +35437,8 @@ var minlengthDirective = function() {
 	function AppViewModel(dataservice) {
 		var vm = this;
 
+		vm.formOpen = false;
+
 		dataservice.
 			getBudgetItems().
 			then(function(budgetEntries) {
@@ -35444,6 +35446,12 @@ var minlengthDirective = function() {
 			});
 	}
 	AppViewModel.$inject = ["dataservice"];
+
+	AppViewModel.prototype = {
+		openBudgetItemDialog: function() {
+			this.formOpen = true;
+		},
+	};
 })();
 
 (function() {
@@ -35457,6 +35465,42 @@ var minlengthDirective = function() {
 			controller: 'AppViewModel',
 			controllerAs: 'vm',
 			templateUrl: 'src/components/app/app.tpl.html',
+		};
+	}
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
+		.controller('BudgetEntryFormViewModel', BudgetEntryFormViewModel);
+
+	function BudgetEntryFormViewModel() {
+		var vm = this;
+	}
+
+	BudgetEntryFormViewModel.prototype = {
+		save: function() {
+			console.log('save!');
+		}
+	};
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
+		.directive('budgetEntryForm', budgetEntryForm);
+
+	function budgetEntryForm() {
+		return {
+			controller: 'BudgetEntryFormViewModel',
+			controllerAs: 'vm',
+			templateUrl: 'src/components/budget-entry-form/budget-entry-form.tpl.html',
+			bindToController: true,
+			scope: {
+				budgetEntry: '=',
+			},
 		};
 	}
 })();
@@ -35497,14 +35541,8 @@ var minlengthDirective = function() {
 		.module('budgetApp')
 		.controller('BudgetEntryViewModel', BudgetEntryViewModel);
 
-	function BudgetEntryViewModel($scope) {
-		console.log(this, $scope);
-		//this.budgetEntryModel = entry;
-		// this.budgetEntryModel = budgetEntryModelFactory.create({
-		// 	label: 'test',
-		// });
+	function BudgetEntryViewModel() {
 	}
-	BudgetEntryViewModel.$inject = ["$scope"];
 
 	BudgetEntryViewModel.prototype = {
 	};
