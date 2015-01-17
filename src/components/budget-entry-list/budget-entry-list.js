@@ -5,7 +5,6 @@
 		.directive('budgetEntryList', budgetEntryList);
 
 	function budgetEntryList() {
-		console.log(1);
 		return {
 			controller: 'BudgetEntriesViewModel',
 			controllerAs: 'vm',
