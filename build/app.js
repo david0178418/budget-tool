@@ -35357,6 +35357,30 @@ var minlengthDirective = function() {
 	"use strict";
 	angular
 		.module('budgetApp')
+		.factory('budgetEntriesData', budgetEntriesData);
+
+	function budgetEntriesData(_, dataService) {
+		var budgetEntries = [];
+
+		dataService.
+			loadSavedBudgetItems().
+			then(function(data) {
+				budgetEntries.splice(0);
+
+				_.each(data, function(budgetItem) {
+					budgetEntries.push(budgetItem);
+				});
+			});
+
+		return budgetEntries;
+	}
+	budgetEntriesData.$inject = ["_", "dataService"];
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
 		.factory('budgetFormService', budgetFormService);
 
 	// Shot in the dark trying to figure out a clean way to handle
@@ -35394,11 +35418,13 @@ var minlengthDirective = function() {
 		.factory('dataService', dataService);
 
 	function dataService($q) {
+		var firstLoad;
+
 		return {
-			getBudgetItems: getBudgetItems,
+			loadSavedBudgetItems: loadSavedBudgetItems,
 		};
 
-		function getBudgetItems() {
+		function loadSavedBudgetItems() {
 			var data = [{
 				label: 'test22',
 			}, {
@@ -35406,7 +35432,9 @@ var minlengthDirective = function() {
 			}];
 
 			var fetch = $q.defer();
-			fetch.resolve(data);
+			setTimeout(function() {
+				fetch.resolve(data);
+			}, 2000);
 
 			return fetch.promise;
 		}
@@ -35468,8 +35496,11 @@ var minlengthDirective = function() {
 		.module('budgetApp')
 		.controller('AppViewModel', AppViewModel);
 
-	function AppViewModel(dataService, budgetFormService) {
+	function AppViewModel(budgetEntriesData, budgetFormService) {
 		var vm = this;
+
+		vm.budgetEntries = budgetEntriesData;
+
 
 		vm.openBudgetItemDialog = function() {
 			budgetFormService.openForm();
@@ -35478,14 +35509,8 @@ var minlengthDirective = function() {
 		vm.formIsOpen = function() {
 			return budgetFormService.formIsOpen();
 		};
-
-		dataService.
-			getBudgetItems().
-			then(function(budgetEntries) {
-				vm.budgetEntries = budgetEntries;
-			});
 	}
-	AppViewModel.$inject = ["dataService", "budgetFormService"];
+	AppViewModel.$inject = ["budgetEntriesData", "budgetFormService"];
 
 	AppViewModel.prototype = {
 	};

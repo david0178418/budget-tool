@@ -5,11 +5,13 @@
 		.factory('dataService', dataService);
 
 	function dataService($q) {
+		var firstLoad;
+
 		return {
-			getBudgetItems: getBudgetItems,
+			loadSavedBudgetItems: loadSavedBudgetItems,
 		};
 
-		function getBudgetItems() {
+		function loadSavedBudgetItems() {
 			var data = [{
 				label: 'test22',
 			}, {
@@ -17,7 +19,9 @@
 			}];
 
 			var fetch = $q.defer();
-			fetch.resolve(data);
+			setTimeout(function() {
+				fetch.resolve(data);
+			}, 2000);
 
 			return fetch.promise;
 		}
