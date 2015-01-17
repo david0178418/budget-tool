@@ -1,5 +1,6 @@
 <div>
-	<div ng-repeat="budgetEntry in vm.budgetEntries">
-		<budget-entry-list-item budget-entry="budgetEntry"></budget-entry-list-item>
-	</div>
+	<budget-entry-list-item
+		ng-repeat="budgetEntry in vm.budgetEntries"
+		budget-entry="budgetEntry"
+	></budget-entry-list-item>
 </div>
