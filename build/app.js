@@ -35357,9 +35357,43 @@ var minlengthDirective = function() {
 	"use strict";
 	angular
 		.module('budgetApp')
-		.factory('dataservice', dataservice);
+		.factory('budgetFormService', budgetFormService);
 
-	function dataservice($q) {
+	// Shot in the dark trying to figure out a clean way to handle
+	// inter-component communication.  At the moment, only one modal
+	// can be open at time which is clearly an issue
+	function budgetFormService($q) {
+		var formOpen = false;
+		var service = {};
+
+		return {
+			closeForm: closeForm,
+			formIsOpen: formIsOpen,
+			openForm: openForm,
+		};
+
+		function closeForm() {
+			formOpen = false;
+		}
+
+		function formIsOpen() {
+			return formOpen;
+		}
+
+		function openForm() {
+			formOpen = true;
+		}
+	}
+	budgetFormService.$inject = ["$q"];
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
+		.factory('dataService', dataService);
+
+	function dataService($q) {
 		return {
 			getBudgetItems: getBudgetItems,
 		};
@@ -35377,7 +35411,7 @@ var minlengthDirective = function() {
 			return fetch.promise;
 		}
 	}
-	dataservice.$inject = ["$q"];
+	dataService.$inject = ["$q"];
 })();
 
 (function() {
@@ -35434,23 +35468,26 @@ var minlengthDirective = function() {
 		.module('budgetApp')
 		.controller('AppViewModel', AppViewModel);
 
-	function AppViewModel(dataservice) {
+	function AppViewModel(dataService, budgetFormService) {
 		var vm = this;
 
-		vm.formOpen = false;
+		vm.openBudgetItemDialog = function() {
+			budgetFormService.openForm();
+		};
 
-		dataservice.
+		vm.formIsOpen = function() {
+			return budgetFormService.formIsOpen();
+		};
+
+		dataService.
 			getBudgetItems().
 			then(function(budgetEntries) {
 				vm.budgetEntries = budgetEntries;
 			});
 	}
-	AppViewModel.$inject = ["dataservice"];
+	AppViewModel.$inject = ["dataService", "budgetFormService"];
 
 	AppViewModel.prototype = {
-		openBudgetItemDialog: function() {
-			this.formOpen = true;
-		},
 	};
 })();
 
@@ -35475,14 +35512,17 @@ var minlengthDirective = function() {
 		.module('budgetApp')
 		.controller('BudgetEntryFormViewModel', BudgetEntryFormViewModel);
 
-	function BudgetEntryFormViewModel() {
+	function BudgetEntryFormViewModel(budgetFormService) {
 		var vm = this;
+
+		vm.save = function() {
+			budgetFormService.closeForm();
+			console.log('save!');
+		};
 	}
+	BudgetEntryFormViewModel.$inject = ["budgetFormService"];
 
 	BudgetEntryFormViewModel.prototype = {
-		save: function() {
-			console.log('save!');
-		}
 	};
 })();
 

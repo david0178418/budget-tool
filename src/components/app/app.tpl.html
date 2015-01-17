@@ -2,5 +2,5 @@
 	<button type="button" ng-click="vm.openBudgetItemDialog()">Add budget item</button>
 	<budget-entry-list budget-entries="vm.budgetEntries"></budget-entry-list>
 	<hr>
-	<budget-entry-form ng-show="vm.formOpen"></budget-entry-form>
+	<budget-entry-form ng-show="vm.formIsOpen()"></budget-entry-form>
 </div>

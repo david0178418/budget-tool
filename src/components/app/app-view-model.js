@@ -4,12 +4,18 @@
 		.module('budgetApp')
 		.controller('AppViewModel', AppViewModel);
 
-	function AppViewModel(dataservice) {
+	function AppViewModel(dataService, budgetFormService) {
 		var vm = this;
 
-		vm.formOpen = false;
+		vm.openBudgetItemDialog = function() {
+			budgetFormService.openForm();
+		};
 
-		dataservice.
+		vm.formIsOpen = function() {
+			return budgetFormService.formIsOpen();
+		};
+
+		dataService.
 			getBudgetItems().
 			then(function(budgetEntries) {
 				vm.budgetEntries = budgetEntries;
@@ -17,8 +23,5 @@
 	}
 
 	AppViewModel.prototype = {
-		openBudgetItemDialog: function() {
-			this.formOpen = true;
-		},
 	};
 })();

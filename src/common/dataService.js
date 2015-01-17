@@ -2,9 +2,9 @@
 	"use strict";
 	angular
 		.module('budgetApp')
-		.factory('dataservice', dataservice);
+		.factory('dataService', dataService);
 
-	function dataservice($q) {
+	function dataService($q) {
 		return {
 			getBudgetItems: getBudgetItems,
 		};
