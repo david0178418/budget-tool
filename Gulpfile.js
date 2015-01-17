@@ -5,13 +5,13 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var webserver = require('gulp-webserver');
- 
+
 gulp.task('sass', function () {
-	gulp.src('./src/sass/main.scss')
+	gulp.src('./src/main.scss')
 		.pipe(sourcemaps.init())
 		.pipe(sass({
 			outputStyle: 'expanded',
-			includePaths: ['./src/scss'],
+			includePaths: ['./src'],
 		}))
   		.pipe(sourcemaps.write('../maps'))
 		.pipe(gulp.dest('./build'));
@@ -23,9 +23,9 @@ gulp.task('js', function () {
 			'bower_components/localforage/dist/localforage.js',
 			'bower_components/lodash/dist/lodash.js',
 			'bower_components/angular/angular.js',
-			'src/js/third-party/third-party.js',
-			'src/js/app.js',
-			'src/js/**/*.js',
+			'src/third-party/third-party.js',
+			'src/main.js',
+			'src/**/*.js',
 		])
 		.pipe(sourcemaps.init())
 		.pipe(concat('app.js'))
@@ -36,8 +36,8 @@ gulp.task('js', function () {
 })
 
 gulp.task('watch', function() {
-	gulp.watch('src/sass/**/*.scss', ['sass']);
-	gulp.watch('src/js/**/*.js', ['js']);
+	gulp.watch('src/**/*.scss', ['sass']);
+	gulp.watch('src/**/*.js', ['js']);
 });
 
 gulp.task('webserver', function() {

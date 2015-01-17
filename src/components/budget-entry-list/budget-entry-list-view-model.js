@@ -4,11 +4,7 @@
 		.module('budgetApp')
 		.controller('BudgetEntriesViewModel', BudgetEntriesViewModel);
 
-	function BudgetEntriesViewModel(dataservice) {
+	function BudgetEntriesViewModel() {
 		var vm = this;
-		
-		dataservice.getData().then(function(data) {
-			vm.budgetEntries = data;
-		});
 	}
 })();

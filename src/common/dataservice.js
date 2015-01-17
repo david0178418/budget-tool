@@ -6,12 +6,12 @@
 
 	function dataservice($q) {
 		return {
-			getData: getData,
+			getBudgetItems: getBudgetItems,
 		};
 
-		function getData() {
+		function getBudgetItems() {
 			var data = [{
-				label: 'test2',
+				label: 'test22',
 			}, {
 				label: 'test1',
 			}];

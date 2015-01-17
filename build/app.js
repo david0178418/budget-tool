@@ -35352,6 +35352,7 @@ var minlengthDirective = function() {
 		'third-party',
 	]);
 })();
+
 (function() {
 	"use strict";
 	angular
@@ -35360,12 +35361,12 @@ var minlengthDirective = function() {
 
 	function dataservice($q) {
 		return {
-			getData: getData,
+			getBudgetItems: getBudgetItems,
 		};
 
-		function getData() {
+		function getBudgetItems() {
 			var data = [{
-				label: 'test2',
+				label: 'test22',
 			}, {
 				label: 'test1',
 			}];
@@ -35377,40 +35378,6 @@ var minlengthDirective = function() {
 		}
 	}
 	dataservice.$inject = ["$q"];
-})();
-
-(function() {
-	"use strict";
-	angular
-		.module('budgetApp')
-		.directive('budgetEntryList', budgetEntryList);
-
-	function budgetEntryList() {
-		return {
-			controller: 'BudgetEntriesViewModel',
-			controllerAs: 'vm',
-			templateUrl: 'src/js/budget-entry-list/main.html',
-			scope: {
-				budgetEntryList: '=',
-			},
-		};
-	}
-})();
-
-(function() {
-	"use strict";
-	angular
-		.module('budgetApp')
-		.controller('BudgetEntriesViewModel', BudgetEntriesViewModel);
-
-	function BudgetEntriesViewModel(dataservice) {
-		var vm = this;
-		
-		dataservice.getData().then(function(data) {
-			vm.budgetEntries = data;
-		});
-	}
-	BudgetEntriesViewModel.$inject = ["dataservice"];
 })();
 
 (function() {
@@ -35465,15 +35432,61 @@ var minlengthDirective = function() {
 	"use strict";
 	angular
 		.module('budgetApp')
-		.directive('budgetEntryListItem', budgetEntryListItem);
+		.controller('AppViewModel', AppViewModel);
 
-	function budgetEntryListItem() {
+	function AppViewModel(dataservice) {
+		var vm = this;
+
+		dataservice.
+			getBudgetItems().
+			then(function(budgetEntries) {
+				vm.budgetEntries = budgetEntries;
+			});
+	}
+	AppViewModel.$inject = ["dataservice"];
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
+		.directive('app', app);
+
+	function app() {
 		return {
-			controller: 'BudgetEntryViewModel',
+			controller: 'AppViewModel',
 			controllerAs: 'vm',
-			templateUrl: 'src/js/budget-entry-list/list-item/main.html',
+			templateUrl: 'src/components/app/app.tpl.html',
+		};
+	}
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
+		.controller('BudgetEntriesViewModel', BudgetEntriesViewModel);
+
+	function BudgetEntriesViewModel() {
+		var vm = this;
+	}
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
+		.directive('budgetEntryList', budgetEntryList);
+
+	function budgetEntryList() {
+		console.log(1);
+		return {
+			controller: 'BudgetEntriesViewModel',
+			controllerAs: 'vm',
+			templateUrl: 'src/components/budget-entry-list/budget-entry-list.tpl.html',
+			bindToController: true,
 			scope: {
-				budgetEntry: '=',
+				budgetEntries: '=',
 			},
 		};
 	}
@@ -35496,6 +35509,25 @@ var minlengthDirective = function() {
 
 	BudgetEntryViewModel.prototype = {
 	};
+})();
+
+(function() {
+	"use strict";
+	angular
+		.module('budgetApp')
+		.directive('budgetEntryListItem', budgetEntryListItem);
+
+	function budgetEntryListItem() {
+		return {
+			controller: 'BudgetEntryViewModel',
+			controllerAs: 'vm',
+			templateUrl: 'src/components/budget-entry-list/list-item/list-item.tpl.html',
+			bindToController: true,
+			scope: {
+				budgetEntry: '=',
+			},
+		};
+	}
 })();
 
 //# sourceMappingURL=../maps/app.js.map

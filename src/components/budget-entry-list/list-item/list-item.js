@@ -8,7 +8,8 @@
 		return {
 			controller: 'BudgetEntryViewModel',
 			controllerAs: 'vm',
-			templateUrl: 'src/js/budget-entry-list/list-item/main.html',
+			templateUrl: 'src/components/budget-entry-list/list-item/list-item.tpl.html',
+			bindToController: true,
 			scope: {
 				budgetEntry: '=',
 			},
