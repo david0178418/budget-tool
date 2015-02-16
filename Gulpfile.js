@@ -1,51 +1,42 @@
+'use strict';
+var browserify = require('browserify');
 var concat = require('gulp-concat');
 var gulp = require('gulp');
-var ngAnnotate = require('gulp-ng-annotate');
 var sass = require('gulp-sass');
+var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
+var to5 = require('6to5ify');
 var webserver = require('gulp-webserver');
 
-gulp.task('sass', function () {
-	gulp.src('./src/main.scss')
-		.pipe(sourcemaps.init())
+gulp.task('styles', function () {
+	return gulp.src('./src/sass/main.scss')
 		.pipe(sass({
 			outputStyle: 'expanded',
-			includePaths: ['./src'],
+			includePaths: ['./src/scss'],
 		}))
-  		.pipe(sourcemaps.write('../maps'))
-		.pipe(gulp.dest('./build'));
+		.pipe(concat('styles.css'))
+		.pipe(gulp.dest('./build/'));
 });
 
-gulp.task('js', function () {
-	gulp
-		.src([
-			'bower_components/localforage/dist/localforage.js',
-			'bower_components/lodash/dist/lodash.js',
-			'bower_components/angular/angular.js',
-			'src/third-party/third-party.js',
-			'src/main.js',
-			'src/**/*.js',
-		])
-		.pipe(sourcemaps.init())
-		.pipe(concat('app.js'))
-		.pipe(ngAnnotate())
-		//.pipe(uglify())
-		.pipe(sourcemaps.write('../maps'))
-		.pipe(gulp.dest('./build'));
-})
+gulp.task('js', function() {
+	browserify('./src/js/main.jsx', {transform: to5, debug: true})
+		.transform(to5)
+		.bundle()
+		.pipe(source('bundle.js'))
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('./build/'));
+});
 
 gulp.task('watch', function() {
-	gulp.watch('src/**/*.scss', ['sass']);
-	gulp.watch('src/**/*.js', ['js']);
+	gulp.watch('src/sass/**/*.scss', ['styles']);
+	gulp.watch('src/js/**/*.js*', ['js']);
 });
 
 gulp.task('webserver', function() {
 	gulp.src('./')
 		.pipe(webserver({
-			open: false,
 			port: '4412',
 		}));
 });
 
-gulp.task('default',['sass', 'js', 'watch', 'webserver']);
+gulp.task('default',['styles', 'js', 'watch', 'webserver']);

@@ -1,1 +1,1 @@
-Learning Angular with a simple budget app
+Learning React with a simple budget app
