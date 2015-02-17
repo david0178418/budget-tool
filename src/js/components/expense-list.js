@@ -27,12 +27,7 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		var listItems = this.state.data.map(function(budgetItem) {
-			return <BudgetEntryListItem
-				name={budgetItem.name}
-				amount={budgetItem.amount}
-				interval={budgetItem.interval}
-				details={budgetItem.details}
-			/>
+			return <BudgetEntryListItem {...budgetItem}></BudgetEntryListItem>
 		});
 		return (
 			<section>
