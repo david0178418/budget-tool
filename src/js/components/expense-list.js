@@ -27,7 +27,7 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		var listItems = this.state.data.map(function(budgetItem) {
-			return <BudgetEntryListItem {...budgetItem}></BudgetEntryListItem>
+			return (<BudgetEntryListItem {...budgetItem}></BudgetEntryListItem>);
 		});
 		return (
 			<section>
