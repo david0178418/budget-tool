@@ -7,16 +7,19 @@ var BudgetEntryForm = require("./components/budget-entry-form");
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			world: "World",
+			expenses: [],
+			income: [],
 		};
 	},
 	render: function() {
+		var income = this.state.income;
+		var expenses = this.state.expenses;
 		return (
 			<div>
-				<IncomeList></IncomeList>
-				<ExpenseList></ExpenseList>
-				<BudgetEntryForm></BudgetEntryForm>
+				<IncomeList income={income}></IncomeList>
+				<ExpenseList expenses={expenses}></ExpenseList>
+				<BudgetEntryForm  income={income} expenses={expenses}></BudgetEntryForm>
 			</div>
 		);
-	}
+	},
 });
