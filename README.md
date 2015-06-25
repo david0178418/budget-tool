@@ -1,1 +1,1 @@
-Learning React with a simple budget app
+Simple budget app using React and the flux implementation "Alt"
