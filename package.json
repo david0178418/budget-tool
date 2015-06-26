@@ -9,26 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@davidgranado.com:6003/~/charts.git"
+    "url": "git@github.com:david0178418/budget-tool.git"
   },
   "author": "David Granado",
   "license": "ISC",
   "devDependencies": {
-    "babelify": "^6.1.2",
-    "browserify": "^10.2.4",
-    "gulp": "^3.8.11",
-    "gulp-concat": "^2.5.2",
-    "gulp-develop-server": "^0.4.2",
-    "gulp-if": "^1.2.5",
-    "gulp-sass": "^1.3.3",
-    "gulp-sourcemaps": "^1.5.0",
-    "gulp-uglify": "^1.2.0",
-    "gulp-util": "^3.0.5",
-    "gulp-webserver": "^0.9.0",
+    "babel-core": "^5.6.11",
+    "babel-loader": "^5.2.2",
+    "node-libs-browser": "^0.5.2",
     "node-sass": "^3.0.0-alpha.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.2"
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.12"
   },
   "dependencies": {
     "MD5": "^1.2.1",

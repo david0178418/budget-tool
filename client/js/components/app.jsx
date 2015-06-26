@@ -16,7 +16,7 @@ class App extends React.Component {
 		return (
 			<AltContainer flux={flux}>
 				<div>
-					App initialized
+					App Initialized!
 				</div>
 			</AltContainer>
 		);

@@ -1,5 +1,4 @@
 'use strict';
-var _ = require('lodash');
 var AppConstants = require('./app-constants');
 var argv = require('yargs')
 	.boolean('prod')
@@ -8,9 +7,9 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var fs = require('fs');
 var md5 = require('MD5');
-var moment = require('moment');
 
 var app = express();
+var port = 3000;
 var prod = argv.prod;
 var scriptHash;
 var jsFile = 'bundle'+(prod ? '.min': '')+'.js';
@@ -39,8 +38,29 @@ app.get('/', function (req, res) {
 	});
 });
 
-var server = app.listen(4412, function () {
+var server = app.listen(port, function () {
 	var port = server.address().port;
 	
 	console.log("Server started at http://localhost:"+port);
+});
+
+
+var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+var config = require('./webpack.config.js');
+ 
+new WebpackDevServer(webpack(config), {
+	publicPath: config.output.publicPath,
+	hot: true,
+	historyApiFallback: true,
+	headers: { 'Access-Control-Allow-Origin': '*' },
+	proxy: {
+		'*': 'http://localhost:'+port,
+	}
+}).listen(port+1, 'localhost', function (err, result) {
+	if (err) {
+		console.log(err);
+	}
+
+	console.log('Listening at localhost:3001');
 });
