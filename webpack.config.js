@@ -33,7 +33,7 @@ module.exports = {
 			'client/js', 'node_modules'
 		],
 		alias: {
-			'app-constants': '../../app-constants',
+			'app-constants': path.join(__dirname, 'app-constants'),
 		}
 	},
 	resolveLoader: {
