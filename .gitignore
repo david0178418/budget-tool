@@ -1,2 +1,3 @@
+build/*hot-update.js*
 .directory
 node_modules
