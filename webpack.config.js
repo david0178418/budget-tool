@@ -1,3 +1,4 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
 
@@ -17,13 +18,28 @@ module.exports = {
 				test: /\.jsx?$/,
 				//exclude: /node_modules/,
 				loaders: ['react-hot', 'babel'],
-				include: path.join(__dirname, "client"),
+				include: path.join(__dirname, 'client'),
+			}, {
+				test: /\.css$/,
+				loader: "style!css",
+			},{
+				test: /\.scss$/,
+				loader: 'style!css?sourceMap!sass?sourceMap',
+			}, {
+				test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+				loader: 'file',
+			}, {
+				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+				loader: 'url?prefix=font/&limit=5000&mimetype=application/font-woff',
 			},
-		]
+		],
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin()
+		new webpack.NoErrorsPlugin(),
+	],
+	devtools: [
+		'sourcemap',
 	],
 	resolve: {
 		extensions: [
