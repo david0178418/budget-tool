@@ -4,7 +4,9 @@
 		<title>Budget</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="styles{{minExt}}.css?v={{styleHash}}">
+		{{#if prod}}
+			<link rel="stylesheet" href="styles.min.css?v={{styleHash}}">
+		{{/if}}
 	</head>
 	<body>
 		<div id="app"></div>

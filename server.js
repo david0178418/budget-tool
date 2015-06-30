@@ -14,7 +14,6 @@ var prod = argv.prod;
 var minExt = prod ? '.min': '';
 var scriptHash;
 var jsFile = 'bundle'+minExt+'.js';
-var styleFile = 'styles'+minExt+'.css';
 var styleHash;
 
 console.log("Server production mode: ", prod);
@@ -28,13 +27,16 @@ fs.readFile('build/'+jsFile, function(err, buf) {
 	scriptHash = md5(buf);
 });
 
-fs.readFile('build/'+styleFile, function(err, buf) {
-	styleHash = md5(buf);
-});
+if(prod) {
+	fs.readFile('build/style.min.css', function(err, buf) {
+		styleHash = md5(buf);
+	});
+}
 
 app.get('/', function (req, res) {
 	res.render('index', {
 		minExt: minExt,
+		prod: prod,
 		scriptHash: scriptHash,
 		styleHash: styleHash,
 	});
