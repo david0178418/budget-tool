@@ -11,8 +11,10 @@ var md5 = require('MD5');
 var app = express();
 var port = 3000;
 var prod = argv.prod;
+var minExt = prod ? '.min': '';
 var scriptHash;
-var jsFile = 'bundle'+(prod ? '.min': '')+'.js';
+var jsFile = 'bundle'+minExt+'.js';
+var styleFile = 'styles'+minExt+'.css';
 var styleHash;
 
 console.log("Server production mode: ", prod);
@@ -26,13 +28,13 @@ fs.readFile('build/'+jsFile, function(err, buf) {
 	scriptHash = md5(buf);
 });
 
-fs.readFile('build/styles.css', function(err, buf) {
+fs.readFile('build/'+styleFile, function(err, buf) {
 	styleHash = md5(buf);
 });
 
 app.get('/', function (req, res) {
 	res.render('index', {
-		jsFile: jsFile,
+		minExt: minExt,
 		scriptHash: scriptHash,
 		styleHash: styleHash,
 	});
@@ -44,6 +46,6 @@ var server = app.listen(port, function () {
 	console.log("Server started at http://localhost:"+port);
 });
 
-if(!prod) {
+if(!prod) {console.log(2);
 	require('./dev-server').start(port);
 }

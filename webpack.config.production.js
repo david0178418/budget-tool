@@ -1,15 +1,14 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 module.exports = {
 	entry: [
-		'webpack/hot/only-dev-server',
-		'webpack-dev-server/client?http://0.0.0.0:3001',
 		'./client/js/main',
 	],
 	output: {
 		path: path.join(__dirname, 'build'),
-		filename: 'bundle.js'
+		filename: 'bundle.min.js'
 	},
 	module: {
 		loaders: [
@@ -20,10 +19,10 @@ module.exports = {
 				include: path.join(__dirname, 'client'),
 			}, {
 				test: /\.css$/,
-				loader: "style!css",
+				loader: ExtractTextPlugin.extract('style', 'css'),
 			},{
 				test: /\.scss$/,
-				loader: 'style!css?sourceMap!sass?sourceMap',
+				loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap'),
 			}, {
 				test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 				loader: 'file',
@@ -34,11 +33,8 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
-	],
-	devtools: [
-		'sourcemap',
+		new ExtractTextPlugin("styles.min.css"),
+		new webpack.optimize.UglifyJsPlugin({minimize: true}),
 	],
 	resolve: {
 		extensions: [
