@@ -5,7 +5,7 @@ module.exports = {
 	entry: [
 		'webpack/hot/only-dev-server',
 		'webpack-dev-server/client?http://0.0.0.0:3001',
-		'./client/js/main',
+		'./client/main',
 	],
 	output: {
 		path: path.join(__dirname, 'build'),
@@ -45,7 +45,7 @@ module.exports = {
 			'', '.js', '.jsx'
 		],
 		modulesDirectories: [
-			'client/js', 'node_modules'
+			'client', 'node_modules'
 		],
 		alias: {
 			'app-constants': path.join(__dirname, 'app-constants'),

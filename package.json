@@ -17,8 +17,8 @@
     "build": "npm run build-dev && npm run build-prod",
 	"build-dev": "webpack",
 	"build-prod": "webpack --config webpack.config.production.js",
-	"start": "node server.js",
-	"start-prod": "node server.js --prod=true"
+	"start": "node server/app.js",
+	"start-prod": "node server/app.js --prod=true"
   },
   "devDependencies": {
     "babel-core": "^5.6.11",

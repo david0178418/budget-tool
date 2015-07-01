@@ -4,7 +4,7 @@ var webpack = require("webpack");
 
 module.exports = {
 	entry: [
-		'./client/js/main',
+		'./client/main',
 	],
 	output: {
 		path: path.join(__dirname, 'build'),
@@ -41,7 +41,7 @@ module.exports = {
 			'', '.js', '.jsx'
 		],
 		modulesDirectories: [
-			'client/js', 'node_modules'
+			'client', 'node_modules'
 		],
 		alias: {
 			'app-constants': path.join(__dirname, 'app-constants'),

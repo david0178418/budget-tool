@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2e81d2efaf933e418a51"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c38ccfd69d450b8fab67"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -44158,7 +44158,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  color: red; }\n\n/*# sourceMappingURL=build/sass.map */", "", {"version":3,"sources":["/../../../../sass-loader/index.js?sourceMap!/home/davidg/Projects/budget-tool/client/client/js/main.scss","/../../../../sass-loader/index.js?sourceMap!/home/davidg/Projects/budget-tool/client/js/main.scss"],"names":[],"mappings":"AAAA;EACC,WAAW,EADT;;ACGH,sCAAsC","file":"main.scss","sourcesContent":[null,"* {\n  color: red; }\n\n/*# sourceMappingURL=build/sass.map */"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "* {\n  color: red; }\n\n/*# sourceMappingURL=build/sass.map */", "", {"version":3,"sources":["/../../../../sass-loader/index.js?sourceMap!/home/davidg/Projects/budget-tool/client/main.scss"],"names":[],"mappings":"AAAA;EACC,WAAW,EADT;;AAGH,sCAAsC","file":"main.scss","sourcesContent":["* {\n  color: red; }\n\n/*# sourceMappingURL=build/sass.map */"],"sourceRoot":"webpack://"}]);
 
 	// exports
 
