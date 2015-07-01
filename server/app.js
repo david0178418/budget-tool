@@ -1,7 +1,6 @@
 'use strict';
 var path = require('path');
 var appRoot = '..';
-var AppConstants = require(path.join(appRoot, 'app-constants'));
 var argv = require('yargs')
 	.boolean('prod')
 	.argv;
