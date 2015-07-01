@@ -1,5 +1,6 @@
 'use strict';
-var AppConstants = require('./app-constants');
+var appRoot = '../';
+var AppConstants = require(appRoot+'app-constants');
 var argv = require('yargs')
 	.boolean('prod')
 	.argv;
@@ -20,15 +21,15 @@ console.log("Server production mode: ", prod);
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-app.use(express.static('build'));
-app.use(express.static('node_modules/font-awesome'));
+app.use(express.static(appRoot+'build'));
+app.use(express.static(appRoot+'node_modules/font-awesome'));
 
-fs.readFile('build/'+jsFile, function(err, buf) {
+fs.readFile(appRoot+'build/'+jsFile, function(err, buf) {
 	scriptHash = md5(buf);
 });
 
 if(prod) {
-	fs.readFile('build/style.min.css', function(err, buf) {
+	fs.readFile(appRoot+'build/style.min.css', function(err, buf) {
 		styleHash = md5(buf);
 	});
 }
@@ -48,6 +49,6 @@ var server = app.listen(port, function () {
 	console.log("Server started at http://localhost:"+port);
 });
 
-if(!prod) {console.log(2);
+if(!prod) {
 	require('./dev-server').start(port);
 }
