@@ -37,9 +37,7 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
 	],
-	devtools: [
-		'sourcemap',
-	],
+	devtool: "#cheap-module-eval-source-map",
 	resolve: {
 		extensions: [
 			'', '.js', '.jsx'
