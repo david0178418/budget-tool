@@ -1,7 +1,7 @@
 'use strict';
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config.js');
+var config = require('../webpack.config.js');
 
 module.exports = {
 	start: function(nodePort) {

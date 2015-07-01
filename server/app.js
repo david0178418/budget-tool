@@ -1,6 +1,7 @@
 'use strict';
-var appRoot = '../';
-var AppConstants = require(appRoot+'app-constants');
+var path = require('path');
+var appRoot = '..';
+var AppConstants = require(path.join(appRoot, 'app-constants'));
 var argv = require('yargs')
 	.boolean('prod')
 	.argv;
@@ -20,16 +21,17 @@ var styleHash;
 console.log("Server production mode: ", prod);
 
 app.engine('handlebars', exphbs());
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
-app.use(express.static(appRoot+'build'));
-app.use(express.static(appRoot+'node_modules/font-awesome'));
+app.use(express.static(path.join(appRoot, 'build')));
+app.use(express.static(path.join(appRoot, 'node_modules/font-awesome')));
 
-fs.readFile(appRoot+'build/'+jsFile, function(err, buf) {
+fs.readFile(path.join(appRoot, 'build', jsFile), function(err, buf) {
 	scriptHash = md5(buf);
 });
 
 if(prod) {
-	fs.readFile(appRoot+'build/style.min.css', function(err, buf) {
+	fs.readFile(path.join(appRoot, 'build/style.min.css'), function(err, buf) {
 		styleHash = md5(buf);
 	});
 }
