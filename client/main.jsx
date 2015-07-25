@@ -1,9 +1,8 @@
-'use strict';
-var React = require('react');
-var App = require('./components/app');
+import React from 'react';
+import App from './components/app';
 
-require('bootstrap/dist/css/bootstrap.css');
-require('font-awesome/css/font-awesome.css');
-require('main.scss');
+import 'bootstrap/dist/css/bootstrap.css';
+//require('font-awesome/css/font-awesome.css');
+import 'main.scss';
 
 React.render(<App />, window.app);

@@ -1,20 +1,22 @@
-'use strict';
 //var classNames = require('classnames');
-var BudgetItem = require('./budget-item');
-var map = require('lodash/collection/map');
-var React = require('react/addons');
+import BudgetItem from './budget-item';
+import map from 'lodash/collection/map';
+import React from 'react/addons';
 
 class BugetItems extends React.Component {
+	static displayName = 'BudgetItem'
+
+	propTypes = {
+		items: React.propTypes.object,
+	}
+
 	constructor(props) {
 		super(props);
-
-		this.state = {
-		};
 	}
 
 	render() {
 		return (
-			<div>
+			<div className="list-group">
 				{map(this.props.items, function(item) {
 					return 	(
 						<BudgetItem {...item} />
@@ -25,4 +27,4 @@ class BugetItems extends React.Component {
 	}
 }
 
-module.exports = BugetItems;
+export default BugetItems;

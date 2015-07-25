@@ -1,11 +1,13 @@
-'use strict';
 //var classNames = require('classnames');
-var React = require('react/addons');
-var ReactBootstrap = require('react-bootstrap');
-
-var Panel = ReactBootstrap.Panel;
+import React from 'react/addons';
 
 class BugetItems extends React.Component {
+	static displayName = 'BudgetItems';
+
+	propTypes = {
+		amount: React.PropTypes.number,
+	};
+
 	constructor(props) {
 		super(props);
 
@@ -13,15 +15,17 @@ class BugetItems extends React.Component {
 		};
 	}
 
+	onClick() {
+
+	}
+
 	render() {
 		return (
-			<Panel header={this.props.name}>
-				<div>
-					${this.props.amount}
-				</div>
-			</Panel>
+			<button className="list-group-item" onClick={this.onClick}>
+				${this.props.amount}
+			</button>
 		);
 	}
 }
 
-module.exports = BugetItems;
+export default BugetItems;

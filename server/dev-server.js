@@ -12,14 +12,14 @@ module.exports = {
 			historyApiFallback: true,
 			headers: { 'Access-Control-Allow-Origin': '*' },
 			proxy: {
-				'*': 'http://localhost:'+nodePort,
-			}
+				'*': 'http://localhost:' + nodePort,
+			},
 		}).listen(devPort, 'localhost', function (err, result) {
 			if (err) {
 				console.log(err);
 			}
 
-			console.log('Dev server started at localhost:'+devPort);
+			console.log('Dev server started at localhost:' + devPort);
 		});
 	},
 };
