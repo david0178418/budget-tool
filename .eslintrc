@@ -6,7 +6,8 @@
             "always-multiline"
         ],
         "no-unused-vars": [
-            2, {
+            2,
+            {
                 "vars": "all",
                 "args": "none"
             }
@@ -26,6 +27,16 @@
         "semi": [
             2,
             "always"
+        ],
+        "react/sort-comp": [
+            1,
+            {
+                "order": [
+                    "lifecycle",
+                    "render",
+                    "everything-else",
+                ]
+            }
         ]
     }
 }
