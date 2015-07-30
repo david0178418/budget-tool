@@ -2,15 +2,19 @@
 	float: right;
 }
 
-.budget-items {
-	padding: 20px 50px;
+.budget-detail-tabs {
+	& > .tab-pane {
+		padding: 20px 30px;
+	}
+}
 
+.budget-items {
 	.detail-toggle {
 		float: right;
 	}
 }
 
-.budget-summary {
+.budget-range-summary {
 	font-weight: bold;
 	font-size: 20px;
 	padding: 20px 50px;
