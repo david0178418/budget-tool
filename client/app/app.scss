@@ -1,0 +1,9 @@
+.add-budget-item {
+	float: right;
+}
+
+.budget-detail-tabs {
+	& > .tab-pane {
+		padding: 20px 30px;
+	}
+}
