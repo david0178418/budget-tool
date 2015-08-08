@@ -1,9 +1,25 @@
-.add-budget-item {
-	float: right;
-}
+.budget-management-tool {
+	$navWidth: 200px;
+	position: relative;
 
-.budget-detail-tabs {
-	& > .tab-pane {
+	.add-budget-item {
+		position: absolute;
+		right: 0px;
+	}
+
+	.tab-pane {
 		padding: 20px 30px;
+	}
+
+	.budget-detail-nav {
+		display: inline-block;
+		text-align: right;
+		vertical-align: top;
+		width: $navWidth;
+	}
+
+	.budget-detail-tabs {
+		display: inline-block;
+		width: calc(100% - #{$navWidth});
 	}
 }
