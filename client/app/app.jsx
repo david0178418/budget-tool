@@ -1,10 +1,17 @@
-import classNames from 'classnames';
 import keyMirror from 'react/lib/keyMirror';
-import React from 'react/addons';
+import React from 'react';
 
 import BudgetItemsManagement from './components/budget-items-management/budget-items-management';
 import Calendar from './components/calendar/calendar';
 import DateRangeDetail from './components/date-range-detail/date-range-detail';
+
+import {
+	Button,
+	Nav,
+	NavItem,
+	TabbedArea,
+	TabPane,
+} from 'react-bootstrap';
 
 import './app.scss';
 
@@ -32,53 +39,42 @@ class App extends React.Component {
 		return (
 			<div className="budget-management-tool">
 				<div className="persistent">
-					<button className="add-budget-item btn btn-default" type="button">
+					<Button className="add-budget-item">
 						<span className="glyphicon glyphicon-plus"></span> Create Budget Entry
-					</button>
+					</Button>
 				</div>
 				<div>
-					<ul className="budget-detail-nav nav nav-pills nav-stacked">
-						<li className={classNames({
-							active: this.state.selectedTab === TABS.CALENDAR,
-						})}>
-							{/*
-								Does this make sense here? If the view is to
-								a fixed date renge, calendar view would be
-								an odd-ball out.  Seems like it's a level up maybe?
-							*/}
-							<a href="#" onClick={this.onTabSelect.bind(this, TABS.CALENDAR)}>Calendar</a>
-						</li>
-						<li className={classNames({
-							active: this.state.selectedTab === TABS.GRAPH,
-						})}>
-							<a href="#" onClick={this.onTabSelect.bind(this, TABS.GRAPH)}>Graph</a>
-						</li>
-						<li className={classNames({
-							active: this.state.selectedTab === TABS.ITEMS,
-						})}>
-							<a href="#" onClick={this.onTabSelect.bind(this, TABS.ITEMS)}>Scheduled Budget Items</a>
-						</li>
-					</ul>
-					<div className="budget-detail-tabs tab-content">
-						<div className={classNames({
-							active: this.state.selectedTab === TABS.CALENDAR,
-							'tab-pane': true,
-						})}>
+					<Nav
+						activeKey={this.state.selectedTab}
+						bsStyle="pills"
+						className="budget-detail-nav"
+						onSelect={this.onTabSelect.bind(this)}
+						stacked
+					>
+						<NavItem eventKey={TABS.CALENDAR}>
+							Calendar
+						</NavItem>
+						<NavItem eventKey={TABS.GRAPH}>
+							Graph
+						</NavItem>
+						<NavItem eventKey={TABS.ITEMS}>
+							Scheduled Budget Items
+						</NavItem>
+					</Nav>
+					<TabbedArea
+						activeKey={this.state.selectedTab}
+						className="budget-detail-tabs"
+					>
+						<TabPane eventKey={TABS.CALENDAR} >
 							<Calendar />
-						</div>
-						<div className={classNames({
-							active: this.state.selectedTab === TABS.GRAPH,
-							'tab-pane': true,
-						})}>
+						</TabPane>
+						<TabPane eventKey={TABS.GRAPH} >
 							<DateRangeDetail />
-						</div>
-						<div className={classNames({
-							active: this.state.selectedTab === TABS.ITEMS,
-							'tab-pane': true,
-						})}>
+						</TabPane>
+						<TabPane eventKey={TABS.ITEMS}>
 							<BudgetItemsManagement />
-						</div>
-					</div>
+						</TabPane>
+					</TabbedArea>
 				</div>
 			</div>
 		);

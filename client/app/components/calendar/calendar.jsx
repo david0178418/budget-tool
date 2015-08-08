@@ -1,7 +1,11 @@
-import classNames from 'classnames';
 import DayDetail from './components/day-detail/day-detail';
 import keyMirror from 'react/lib/keyMirror';
-import React from 'react/addons';
+import React from 'react';
+
+import {
+	TabbedArea,
+	TabPane,
+} from 'react-bootstrap';
 
 import './calendar.scss';
 
@@ -27,26 +31,14 @@ class Calendar extends React.Component {
 	render() {
 		return (
 			<div>
-				<ul className="nav nav-tabs">
-					<li className={classNames({
-						active: this.state.selectedTab === TABS.DAY,
-					})}>
-						<a href="#" onClick={this.onTabSelect.bind(this, TABS.DAY)}>Day</a>
-					</li>
-					<li className={classNames({
-						active: this.state.selectedTab === TABS.MONTH,
-					})}>
-						<a href="#" onClick={this.onTabSelect.bind(this, TABS.MONTH)}>MONTH</a>
-					</li>
-				</ul>
-				<div className="tab-content">
-					<div className={classNames({
-						active: this.state.selectedTab === TABS.DAY,
-						'tab-pane': true,
-					})}>
-						<DayDetail />
-					</div>
-				</div>
+			<TabbedArea activeKey={this.state.selectedTab} onSelect={this.onTabSelect.bind(this)}>
+				<TabPane eventKey={TABS.DAY} tab="Day">
+					<DayDetail />
+				</TabPane>
+				<TabPane eventKey={TABS.MONTH} tab="Month">
+					Month
+				</TabPane>
+			</TabbedArea>
 			</div>
 		);
 	}

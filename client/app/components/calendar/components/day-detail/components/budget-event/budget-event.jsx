@@ -1,7 +1,12 @@
 import AppConstants from 'app-constants';
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
-import {map} from 'lodash';
+import { map } from 'lodash';
+
+import {
+	Button,
+	Glyphicon,
+} from 'react-bootstrap';
 
 import './budget-event.scss';
 
@@ -36,13 +41,12 @@ class BudgetEvent extends Component {
 					'budget-event': true,
 					expanded: this.state.expanded,
 				})}>
-					<button className="detail-toggle btn btn-default btn-xs" onClick={this.toggleExpand.bind(this)} type="button">
-						<span className={classNames({
-							glyphicon: true,
-							'glyphicon-menu-up': this.state.expanded,
-							'glyphicon-menu-down': !this.state.expanded,
-						})}></span>
-					</button>
+					<Button bsSize="xsmall" className="detail-toggle" onClick={this.toggleExpand.bind(this)}>
+						<Glyphicon glyph={classNames({
+							'menu-up': this.state.expanded,
+							'menu-down': !this.state.expanded,
+						})} />
+					</Button>
 					<div>
 						{this.props.name} - ${this.props.amount} - {this.props.type}
 					</div>
@@ -57,12 +61,12 @@ class BudgetEvent extends Component {
 						{this.renderNotes()}
 					</div>
 					<div className="buget-event-controls btn-group">
-						<button className="btn btn-default btn-xs">
-							<span className="glyphicon glyphicon-pencil"></span>
-						</button>
-						<button className="btn btn-default btn-xs">
-							<span className="glyphicon glyphicon-remove"></span>
-						</button>
+						<Button bsSize="xsmall">
+							<Glyphicon glyph="pencil" />
+						</Button>
+						<Button bsSize="xsmall">
+							<Glyphicon glyph="remove" />
+						</Button>
 					</div>
 				</div>
 			</div>
@@ -81,7 +85,7 @@ class BudgetEvent extends Component {
 					{map(this.props.exceptions, function(exception) {
 						return (
 							<li>
-								{exception} <button className="btn btn-default btn-link">remove</button>
+								{exception} <Button bsStyle="link" className="">remove</Button>
 							</li>
 						);
 					})}

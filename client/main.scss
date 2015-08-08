@@ -14,3 +14,12 @@ $leftColWidth: 200px;
 #app {
 	margin: 30px;
 }
+
+.modal-container {
+	position: relative;
+
+	.modal,
+	.modal-backdrop {
+		position: absolute;
+	}
+}

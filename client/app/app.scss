@@ -11,15 +11,30 @@
 		padding: 20px 30px;
 	}
 
-	.budget-detail-nav {
+	nav.budget-detail-nav {
 		display: inline-block;
 		text-align: right;
 		vertical-align: top;
 		width: $navWidth;
+
+		// Hack since tab component wraps in a div
+		+ div {
+			display: inline-block;
+			position: absolute;
+			width: calc(100% - #{$navWidth});
+
+			.tab-pane {
+				position: absolute;
+				width: 100%;
+			}
+		}
 	}
 
-	.budget-detail-tabs {
-		display: inline-block;
-		width: calc(100% - #{$navWidth});
+	nav.budget-detail-tabs {
+		display: none;
+	}
+
+	.add-budget-item {
+		z-index: 100;
 	}
 }

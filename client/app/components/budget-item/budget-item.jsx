@@ -1,6 +1,11 @@
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
 
+import {
+	Button,
+	Glyphicon,
+} from 'react-bootstrap';
+
 import './budget-item.scss';
 
 export default
@@ -33,13 +38,14 @@ class BudgetItem extends Component {
 					'budget-item': true,
 					expanded: this.state.expanded,
 				})}>
-					<button className="detail-toggle btn btn-default btn-xs" onClick={this.toggleExpand.bind(this)} type="button">
+					<Button bsSize="xsmall" className="detail-toggle" onClick={this.toggleExpand.bind(this)}>
+						<Glyphicon glyph='align-justify' />
 						<span className={classNames({
 							glyphicon: true,
 							'glyphicon-menu-up': this.state.expanded,
 							'glyphicon-menu-down': !this.state.expanded,
 						})}></span>
-					</button>
+					</Button>
 					<div>${this.props.amount} - {this.props.name} - Variable</div>
 					<div className={classNames({
 						'budget-item-detail': true,
@@ -51,12 +57,12 @@ class BudgetItem extends Component {
 						{this.renderNotes()}
 					</div>
 					<div className="buget-item-controls btn-group">
-						<button className="btn btn-default btn-xs">
+						<Button className="btn btn-default btn-xs">
 							<span className="glyphicon glyphicon-pencil"></span>
-						</button>
-						<button className="btn btn-default btn-xs">
+						</Button>
+						<Button className="btn btn-default btn-xs">
 							<span className="glyphicon glyphicon-remove"></span>
-						</button>
+						</Button>
 					</div>
 				</div>
 			</div>

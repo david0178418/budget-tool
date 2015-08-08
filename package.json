@@ -49,6 +49,7 @@
     "moment": "^2.10.3",
     "moment-recur": "^1.0.5",
     "react": "^0.13.3",
+    "react-bootstrap": "^0.24.3",
     "yargs": "^3.12.0"
   }
 }
