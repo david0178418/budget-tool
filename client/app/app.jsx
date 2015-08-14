@@ -1,12 +1,15 @@
 import keyMirror from 'react/lib/keyMirror';
 import React from 'react';
 
+import BudgetItemEdit from './components/budget-item-edit/budget-item-edit';
 import BudgetItemsManagement from './components/budget-items-management/budget-items-management';
 import Calendar from './components/calendar/calendar';
 import DateRangeDetail from './components/date-range-detail/date-range-detail';
 
 import {
 	Button,
+	Glyphicon,
+	Modal,
 	Nav,
 	NavItem,
 	TabbedArea,
@@ -30,7 +33,11 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.closeCreateModal = this.closeCreateModal.bind(this);
+		this.openCreateModal = this.openCreateModal.bind(this);
+
 		this.state = {
+			createModalOpen: false,
 			selectedTab: TABS.CALENDAR,
 		};
 	}
@@ -39,9 +46,20 @@ class App extends React.Component {
 		return (
 			<div className="budget-management-tool">
 				<div className="persistent">
-					<Button className="add-budget-item">
-						<span className="glyphicon glyphicon-plus"></span> Create Budget Entry
+					<Button className="add-budget-item" onClick={this.openCreateModal}>
+						<Glyphicon glyph="plus"/> Create Budget Entry
 					</Button>
+					<Modal onHide={this.closeCreateModal} show={this.state.createModalOpen} >
+						<Modal.Header closeButton>
+							<Modal.Title>Budget Item Edit</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<BudgetItemEdit />
+						</Modal.Body>
+						<Modal.Footer>
+							<Button onClick={this.closeCreateModal}>Close</Button>
+						</Modal.Footer>
+					</Modal>
 				</div>
 				<div>
 					<Nav
@@ -80,9 +98,21 @@ class App extends React.Component {
 		);
 	}
 
+	closeCreateModal() {
+		this.setState({
+			createModalOpen: false,
+		});
+	}
+
 	onTabSelect(tab) {
 		this.setState({
 			selectedTab: tab,
+		});
+	}
+
+	openCreateModal() {
+		this.setState({
+			createModalOpen: true,
 		});
 	}
 }
