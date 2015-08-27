@@ -1,5 +1,5 @@
 import keyMirror from 'react/lib/keyMirror';
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 import BudgetItemEdit from './components/budget-item-edit/budget-item-edit';
 import BudgetItemsManagement from './components/budget-items-management/budget-items-management';
@@ -28,6 +28,12 @@ export default
 class App extends React.Component {
 	static get displayName() {
 		return 'App';
+	}
+
+	static get propTypes() {
+		return {
+			budgetItems: PropTypes.array,
+		};
 	}
 
 	constructor(props) {
@@ -91,7 +97,7 @@ class App extends React.Component {
 							<DateRangeDetail />
 						</TabPane>
 						<TabPane eventKey={TABS.ITEMS}>
-							<BudgetItemsManagement />
+							<BudgetItemsManagement budgetItems={this.props.budgetItems}/>
 						</TabPane>
 					</TabbedArea>
 				</div>
