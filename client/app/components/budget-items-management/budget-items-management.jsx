@@ -1,5 +1,5 @@
 //import classNames from 'classnames';
-import React from 'react/addons';
+import React from 'react';
 
 import './budget-items-management.scss';
 
@@ -11,9 +11,6 @@ class BudgetItemsManagement extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-		};
 	}
 
 	render() {

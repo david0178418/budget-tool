@@ -1,5 +1,5 @@
-'use strict';
 import AppConstants from 'app-constants';
+import BudgetItemActions from 'actions/budget-item-actions';
 import extend from 'lodash/object/extend';
 import flux from 'flux';
 
@@ -16,7 +16,7 @@ var dummyData = [
 		interval: AppConstants.INTERVAL_BI_WEEKLY,
 		startDate: '1/1/2015',
 		type: AppConstants.BUDGET_TYPE_INCOME,
-	}
+	},
 ];
 
 class BudgetItemsStore {
@@ -26,6 +26,8 @@ class BudgetItemsStore {
 		});
 
 		this.bindListeners({
+			addItem: BudgetItemActions.budgetItemCreated,
+			removeItem: BudgetItemActions.budgetItemDeleted,
 		});
 	}
 
@@ -38,8 +40,8 @@ class BudgetItemsStore {
 	}
 
 	removeItem(id) {
-		// TODO for now, just use index+1 as id.  Will set proper id when persistence is set.
-		this.items.splice(id-1, 1);
+		// #TODO:0 for now, just use index+1 as id.  Will set proper id when persistence is set.
+		this.items.splice(id - 1, 1);
 
 		this.setState({
 			items: this.items,

@@ -1,17 +1,15 @@
 import flux from 'flux';
-import extend from 'lodash/object/extend';
-import ApiUtils from 'api-utils';
+//import ApiUtils from 'api-utils';
 
 class AppActions {
+	static displayName() {
+		return 'AppActions';
+	}
+
 	constructor() {
 		this.generateActions(
 		);
 	}
 }
-
-extend(AppActions.prototype, {
-});
-
-AppActions.displayName = 'AppActions';
 
 export default flux.createActions(AppActions);

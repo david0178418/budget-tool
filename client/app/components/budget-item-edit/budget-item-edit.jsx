@@ -23,4 +23,9 @@ class BudgetItemEdit extends React.Component {
 			</div>
 		);
 	}
+
+	save() {
+		// Test
+		console.log('Saved');
+	}
 }

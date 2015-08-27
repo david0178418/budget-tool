@@ -51,12 +51,13 @@ class App extends React.Component {
 					</Button>
 					<Modal onHide={this.closeCreateModal} show={this.state.createModalOpen} >
 						<Modal.Header closeButton>
-							<Modal.Title>Budget Item Edit</Modal.Title>
+							<Modal.Title>Budget Item Create</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
 							<BudgetItemEdit />
 						</Modal.Body>
 						<Modal.Footer>
+							<Button onClick={this.closeCreateModal}>Save</Button>
 							<Button onClick={this.closeCreateModal}>Close</Button>
 						</Modal.Footer>
 					</Modal>

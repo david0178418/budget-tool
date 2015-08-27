@@ -1,7 +1,7 @@
 import AppConstants from 'app-constants';
 //import classNames from 'classnames';
 import BudgetEvent from './components/budget-event/budget-event';
-import React from 'react/addons';
+import React from 'react';
 
 import './day-detail.scss';
 
