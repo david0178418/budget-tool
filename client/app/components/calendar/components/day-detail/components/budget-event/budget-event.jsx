@@ -82,9 +82,9 @@ class BudgetEvent extends Component {
 			<div>
 				Exceptions:
 				<ul>
-					{map(this.props.exceptions, function(exception) {
+					{this.props.exceptions.map(function(exception) {
 						return (
-							<li>
+							<li key={exception}>
 								{exception} <Button bsStyle="link" className="">remove</Button>
 							</li>
 						);

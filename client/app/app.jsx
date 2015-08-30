@@ -33,6 +33,8 @@ class App extends React.Component {
 	static get propTypes() {
 		return {
 			budgetItems: PropTypes.array,
+			deleteBudgetItem: PropTypes.func,
+			createBudgetItem: PropTypes.func,
 		};
 	}
 
@@ -63,7 +65,7 @@ class App extends React.Component {
 							<BudgetItemEdit />
 						</Modal.Body>
 						<Modal.Footer>
-							<Button onClick={this.closeCreateModal}>Save</Button>
+							<Button onClick={this.props.createBudgetItem}>Save</Button>
 							<Button onClick={this.closeCreateModal}>Close</Button>
 						</Modal.Footer>
 					</Modal>
@@ -97,7 +99,10 @@ class App extends React.Component {
 							<DateRangeDetail />
 						</TabPane>
 						<TabPane eventKey={TABS.ITEMS}>
-							<BudgetItemsManagement budgetItems={this.props.budgetItems}/>
+							<BudgetItemsManagement
+								budgetItems={this.props.budgetItems}
+								deleteAction={this.props.deleteBudgetItem}
+							/>
 						</TabPane>
 					</TabbedArea>
 				</div>

@@ -18,6 +18,7 @@ class BudgetItemsManagement extends React.Component {
 	static get propTypes() {
 		return {
 			budgetItems: PropTypes.array,
+			deleteAction: PropTypes.func,
 		};
 	}
 
@@ -32,11 +33,14 @@ class BudgetItemsManagement extends React.Component {
 				<ListGroup>
 					{this.props.budgetItems.map(function(budgetItem) {
 						return (
-							<ListGroupItem>
-								<BudgetItem {...budgetItem} />
+							<ListGroupItem key={budgetItem.id}>
+								<BudgetItem
+									{...budgetItem}
+									deleteAction={this.props.deleteAction}
+								/>
 							</ListGroupItem>
 						);
-					})}
+					}, this)}
 				</ListGroup>
 			</div>
 		);

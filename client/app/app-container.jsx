@@ -1,10 +1,9 @@
 import AltContainer from 'alt/AltContainer';
 import App from './app';
-import BudgetItemsStore from 'stores/budget-items-store';
 import BudgetItemActions from 'actions/budget-item-actions';
+import BudgetItemsStore from 'stores/budget-items-store';
 import flux from 'flux';
 import React from 'react';
-
 
 export default
 class AppContainer extends React.Component {

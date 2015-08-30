@@ -2,10 +2,12 @@ import AppConstants from 'app-constants';
 import BudgetItemActions from 'actions/budget-item-actions';
 import extend from 'lodash/object/extend';
 import flux from 'flux';
+import reject from 'lodash/collection/reject';
 
 var dummyData = [
 	{
 		amount: 3000,
+		id: 1,
 		interval: AppConstants.INTERVAL_WEEKLY,
 		name: 'Item 1',
 		notes: 'Note for item 2',
@@ -16,6 +18,7 @@ var dummyData = [
 		],
 	}, {
 		amount: 1000,
+		id: 2,
 		interval: AppConstants.INTERVAL_BI_WEEKLY,
 		name: 'Item 2',
 		notes: 'Note for item 2',
@@ -40,7 +43,7 @@ class BudgetItemsStore {
 
 		this.bindListeners({
 			addItem: BudgetItemActions.budgetItemCreated,
-			removeItem: BudgetItemActions.budgetItemDeleted,
+			removeItem: BudgetItemActions.deleteBudgetItem,
 		});
 	}
 
@@ -52,12 +55,17 @@ class BudgetItemsStore {
 		});
 	}
 
-	removeItem(id) {
+	removeItem(data) {
+		// TODO: Figure out why an array comes through rather than just the data that is bound.
+		var id = data[0];
+		debugger;
 		// #TODO:0 for now, just use index+1 as id.  Will set proper id when persistence is set.
-		this.items.splice(id - 1, 1);
+		var items = reject(this.items, function(item) {
+			return item.id === id;
+		});
 
 		this.setState({
-			items: this.items,
+			items,
 		});
 	}
 }

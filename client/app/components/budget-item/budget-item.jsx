@@ -1,7 +1,6 @@
 import AppConstants from 'app-constants';
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
-import map from 'lodash/collection/map';
 
 import {
 	Button,
@@ -66,8 +65,8 @@ class BudgetItem extends Component {
 						<Button bsSize="xsmall">
 							<Glyphicon glyph="pencil" />
 						</Button>
-						<Button bsSize="xsmall">
-							<Glyphicon glyph="remove" />
+						<Button bsSize="xsmall" onClick={this.props.deleteAction.bind(null, this.props.id)}>
+							<Glyphicon glyph="remove"/>
 						</Button>
 					</div>
 				</div>
@@ -84,9 +83,9 @@ class BudgetItem extends Component {
 			<div>
 				Exceptions:
 				<ul>
-					{map(this.props.exceptions, function(exception) {
+					{this.props.exceptions.map(function(exception) {
 						return (
-							<li>
+							<li key={exception}>
 								{exception} <Button bsStyle="link" className="">remove</Button>
 							</li>
 						);
