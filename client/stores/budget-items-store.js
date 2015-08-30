@@ -5,21 +5,34 @@ import flux from 'flux';
 
 var dummyData = [
 	{
-		name: 'Item 1',
 		amount: 3000,
 		interval: AppConstants.INTERVAL_WEEKLY,
+		name: 'Item 1',
+		notes: 'Note for item 2',
 		startDate: '6/1/2015',
 		type: AppConstants.BUDGET_TYPE_EXPENSE,
+		exceptions: [
+			'1/2/2016',
+		],
 	}, {
-		name: 'Item 2',
 		amount: 1000,
 		interval: AppConstants.INTERVAL_BI_WEEKLY,
+		name: 'Item 2',
+		notes: 'Note for item 2',
 		startDate: '1/1/2015',
 		type: AppConstants.BUDGET_TYPE_INCOME,
+		exceptions: [
+			'1/2/2016',
+			'3/2/2015',
+		],
 	},
 ];
 
 class BudgetItemsStore {
+	static get displayName() {
+		return 'BudgetItemsStore';
+	}
+
 	constructor() {
 		extend(this, {
 			items: dummyData,
@@ -48,7 +61,5 @@ class BudgetItemsStore {
 		});
 	}
 }
-
-BudgetItemsStore.displayName = 'BudgetItemsStore';
 
 export default flux.createStore(BudgetItemsStore);

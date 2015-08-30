@@ -1,4 +1,4 @@
-import AppConstants from 'app-constants';
+import BudgetItem from '../budget-item/budget-item';
 //import classNames from 'classnames';
 import React, {PropTypes} from 'react';
 
@@ -33,18 +33,7 @@ class BudgetItemsManagement extends React.Component {
 					{this.props.budgetItems.map(function(budgetItem) {
 						return (
 							<ListGroupItem>
-								<div>
-									Name: {budgetItem.name}
-								</div>
-								<div>
-									Amount: {budgetItem.amount}
-								</div>
-								<div>
-									Start Date: {budgetItem.startDate}
-								</div>
-								<div>
-									Type: {budgetItem.type === AppConstants.BUDGET_TYPE_INCOME ? 'Income' : 'Expense'}
-								</div>
+								<BudgetItem {...budgetItem} />
 							</ListGroupItem>
 						);
 					})}
